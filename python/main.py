@@ -3,11 +3,10 @@
 
 import webapp2
 
-
 class MainPage(webapp2.RequestHandler):
     def get(self):
         self.response.headers['Content-Type'] = 'text/html; charset=UTF-8'
-        self.response.write('こんにちは！')
+        self.response.write(u'こんにちは！')
 
 app = webapp2.WSGIApplication([
     ('/', MainPage),
