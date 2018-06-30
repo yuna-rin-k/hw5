@@ -7,7 +7,7 @@ import json
 import jinja2
 
 networkJson = urlfetch.fetch("https://tokyo.fantasy-transit.appspot.com/net?format=json").content  # ウェブサイトから電車の線路情報をJSON形式でダウンロードする
-network = json.loads(networkJson, 'utf-8')  # JSONとしてパースする（stringからdictのlistに変換する）
+network = json.loads(networkJson.decode('utf-8'))  # JSONとしてパースする（stringからdictのlistに変換する）
 
 tmpl = jinja2.Template(  # Jinjaのテンプレートエンジンを使ってHTMLを作ります
     u'''
