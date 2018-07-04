@@ -22,8 +22,6 @@ var tmpl = template.Must(template.ParseGlob("*.html"))
 type Page struct {
 	A string
 	B string
-
-	Network TransitNetwork
 }
 
 func handleExample(w http.ResponseWriter, r *http.Request) {
@@ -76,5 +74,5 @@ func handleNorikae(w http.ResponseWriter, r *http.Request) {
 
 	// handleExampleと同じようにtemplateにテンプレートを埋めて、出力する。
 	w.Header().Set("Content-Type", "text/html; charset=utf-8")
-	tmpl.ExecuteTemplate(w, "norikae.html", Page{Network: network})
+	tmpl.ExecuteTemplate(w, "norikae.html", network)
 }
