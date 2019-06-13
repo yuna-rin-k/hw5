@@ -7,8 +7,8 @@
 1.  Clone your repository to your local machine.
 
 1.  If command line utility `gcloud` is not available, download and install
-    [Google Cloud SDK](https://cloud.google.com/sdk/docs/quickstarts) (Japanese
-    guides evailable).
+    [Google Cloud SDK](https://cloud.google.com/sdk/docs/quickstarts) ([日本語も
+    あります](https://cloud.google.com/sdk/docs/quickstarts?hl=ja)).
 
     -   Then install App Engine components for the programming language of your
         choice.
@@ -23,9 +23,15 @@
     -   If you already have Google Cloud SDK installed, run `gcloud components
         update` to update to the latest version.
 
-1.  Start a local App Engine server with `dev_appserver.py go/` or
-    `dev_appserver.py python-flask/` (depending on whether you're using Go or
-    Python).
+1.  For first time setup, make a new Google Cloud project by running: `gcloud
+    projects create [COOL NAME FOR YOUR PROJECT] --set-as-default`.
+
+1.  Start a local App Engine server with `dev_appserver.py go/` or or
+    `dev_appserver.py python27` or `dev_appserver.py python3/` (depending on
+    whether you're using Go, Python2.7, or Python3).
+    
+    -  The `go-hello` and `python27-hello` and `python3-hello` directories
+       contain simpler "hello world" apps which you might want to try first.
 
 1.  Add functionality and test your app by viewing the local instance at
     http://localhost:8080 .
@@ -54,4 +60,12 @@
 
 1.  Send email to the STEP mailing list to show everyone your awesome app!
 
-Feel free to repeat steps 4-10 as much as you like!
+Feel free to repeat steps 5-10 as much as you like!
+
+To learn more about AppEngine, visit the [AppEngine
+Documentation](https://cloud.google.com/appengine/docs/). We strongly recommend
+sticking to the [Standard Environment
+runtimes](https://cloud.google.com/appengine/docs/standard/runtimes), and for
+the purposes of this homework you should be able to do everything in the "Always
+Free" tier without ever setting up a billing account or entering any credit card
+numbers etc.
