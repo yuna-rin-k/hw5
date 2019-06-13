@@ -1,4 +1,4 @@
-# Homework 6 Template
+# Homework 5 Template
 
 ## Getting started
 
@@ -15,6 +15,7 @@
         -   Go: `gcloud components install app-engine-go`
         -   Python: `gcloud components install app-engine-python
             app-engine-python-extras`
+        -   Java: `gcloud components install app-engine-java`
     -   Run `gcloud init` to initialize the SDK and create a new Cloud Platform
         project. This newly created Cloud Platform project will allow you to try
         many Google Cloud Platform products, but we will only use Google App
@@ -27,7 +28,7 @@
     Python).
 
 1.  Add functionality and test your app by viewing the local instance at
-    http://localhost:8080.
+    http://localhost:8080 .
 
 1.  Deploy your app to App Engine with `gcloud app deploy go/` or `gcloud app
     deploy python-flask/`.
