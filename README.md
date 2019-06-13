@@ -38,18 +38,15 @@
         (Osaka) or
         [a region](https://cloud.google.com/compute/docs/regions-zones/) that is
         close to you.
-    -   Use `--version` flag to specify a version string manually, e.g. `gcloud
-        app deploy python-flask/ --version=python-flask-20190612`.
-
-1.  Test your app in production by accessing the target url shown in the command
-    line console. To access a specific app version, use
-    `https://{VERSION}-dot-{PROJECT_NAME}.appspot.com`, e.g.
-    https://python-flask-20190612-dot-my-project-name.appspot.com.
 
 1.  To stream production server logs in the command prompt console, run `gcloud
     app logs tail -s default`. You can also use
     [the web console](https://console.cloud.google.com/logs/viewer) to
     view/stream server logs for debugging and troubleshooting.
+    
+    - In theory `dev_appserver.py` acts just like production, and will show you
+      any logs locally, but if you find something that behaves differently, you
+      can use these logs to help figure out why!
 
 1.  `git add .` and `git commit` and `git push` to upload your changes to your
     GitHub repository.
