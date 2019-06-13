@@ -20,8 +20,9 @@ var tmpl = template.Must(template.ParseGlob("*.html"))
 // Templateに渡す内容を分かりやすくするためのtypeを定義しておきます。
 // （「Page」という名前などは重要ではありません）。
 type Page struct {
-	A string
-	B string
+	A    string
+	B    string
+	Pata string
 }
 
 func handleExample(w http.ResponseWriter, r *http.Request) {
@@ -32,6 +33,10 @@ func handleExample(w http.ResponseWriter, r *http.Request) {
 		A: r.FormValue("a"),
 		B: r.FormValue("b"),
 	}
+
+	// とりあえずPataを簡単な操作で設定しますけど、すこし工夫をすれば
+	// パタトクカシーーができます。
+	content.Pata = content.A + content.B
 
 	// example.htmlというtemplateをcontentの内容を使って、{{.A}}などのとこ
 	// ろを実行して、内容を埋めて、wに書き込む。
