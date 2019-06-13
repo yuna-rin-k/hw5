@@ -1,5 +1,4 @@
-#!/usr/bin/env python
-# -*- coding: utf-8 -*-
+#!/usr/bin/env python3
 
 from flask import Flask, render_template, request
 
@@ -7,5 +6,5 @@ app = Flask(__name__)
 
 @app.route('/')
 def root():
-    return render_template("hello.html")
+    return render_template('hello.html')
 
