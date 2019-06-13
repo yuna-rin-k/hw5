@@ -10,7 +10,7 @@ network = json.loads(networkJson.decode('utf-8'))  # JSONとしてパースす�
 @app.route('/')
 def pata():
   # とりあえずpataを簡単な操作で設定するけど、少し工夫すればパタトクカシーーができます。
-  pata = request.args.get('x', '') + request.args.get('y', '')
+  pata = request.args.get('a', '') + request.args.get('b', '')
   return render_template('pata.html', pata=pata)
 
 app = Flask(__name__)
