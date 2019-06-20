@@ -3,7 +3,7 @@
 ## ご注意 Important notes!
 
 1. Using Google AppEngine runtime environments other than `go` or `python27` (or
-   technically `java8` and `php55` -- but we don't include them in our template)
+   technically `java8` and `php55` -- but we don't recommend them)
    requires the use of [Cloud Build](https://cloud.google.com/cloud-build/)
    which is [free for the first 120 minutes of build time per
    day](https://cloud.google.com/cloud-build/#cloud-build-pricing), but still
