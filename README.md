@@ -1,5 +1,22 @@
 # Homework 5 Template
 
+## ご注意 Important notes!
+
+1. Using Google AppEngine runtime environments other than `go` or `python27` (or
+   technically `java8` and `php55` -- but we don't include them in our template)
+   requires the use of [Cloud Build](https://cloud.google.com/cloud-build/)
+   which is [free for the first 120 minutes of build time per
+   day](https://cloud.google.com/cloud-build/#cloud-build-pricing), but still
+   requires a billing account to be active on a project to in order to be
+   used. 120 minutes of build time is a lot, so most students probably won't go
+   over this limit if you want to try this.
+
+1. For most users we recommend using just `go` or `python27`.
+
+    -  For python users, this may mean taking some extra care to make sure that
+       executing `python` is executing the right version (python 2.7). Check
+       with `python --version`.
+
 ## Getting started
 
 1.  Fork a repository for yourself with the github `Fork` button.
