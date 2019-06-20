@@ -8,7 +8,9 @@
 
 1.  If command line utility `gcloud` is not available, download and install
     [Google Cloud SDK](https://cloud.google.com/sdk/docs/quickstarts) ([日本語も
-    あります](https://cloud.google.com/sdk/docs/quickstarts?hl=ja)).
+    あります](https://cloud.google.com/sdk/docs/quickstarts?hl=ja)). **If you're
+    using the STEP Virtual Machine, it's already install so you can skip this
+    step!**
 
     -   Then install App Engine components for the programming language of your
         choice.
