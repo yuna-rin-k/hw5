@@ -6,16 +6,24 @@ import (
 	"net/http"
 
 	"google.golang.org/appengine"
+	"google.golang.org/appengine/log"
 	"google.golang.org/appengine/urlfetch"
 )
 
 func init() {
-	http.HandleFunc("/", handleExample)
+	http.HandleFunc("/pata", handlePata)
 	http.HandleFunc("/norikae", handleNorikae)
+	http.HandleFunc("/", handleRoot)
 }
 
 // このディレクトリーに入っているすべての「.html」終わるファイルをtemplateとして読み込む。
 var tmpl = template.Must(template.ParseGlob("*.html"))
+
+func handleRoot(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Content-Type", "text/html; charset=utf-8")
+	// hello.htmlというtemplateを埋めて、出力する。
+	tmpl.ExecuteTemplate(w, "hello.html", nil)
+}
 
 // Templateに渡す内容を分かりやすくするためのtypeを定義しておきます。
 // （「Page」という名前などは重要ではありません）。
@@ -25,7 +33,10 @@ type Page struct {
 	Pata string
 }
 
-func handleExample(w http.ResponseWriter, r *http.Request) {
+func handlePata(w http.ResponseWriter, r *http.Request) {
+	// Appengineの「Context」を通してAppengineのAPIを利用する。
+	ctx := appengine.NewContext(r)
+
 	w.Header().Set("Content-Type", "text/html; charset=utf-8")
 
 	// templateに埋める内容をrequestのFormValueから用意する。
@@ -40,7 +51,11 @@ func handleExample(w http.ResponseWriter, r *http.Request) {
 
 	// example.htmlというtemplateをcontentの内容を使って、{{.A}}などのとこ
 	// ろを実行して、内容を埋めて、wに書き込む。
-	tmpl.ExecuteTemplate(w, "example.html", content)
+	err := tmpl.ExecuteTemplate(w, "example.html", content)
+	if err != nil {
+		// もしテンプレートに問題があったらこのエラーが出ます。
+		log.Errorf(ctx, "rendering template example.html failed: %v", err)
+	}
 }
 
 // LineはJSONに入ってくる線路の情報をtypeとして定義している。このJSON
@@ -79,5 +94,9 @@ func handleNorikae(w http.ResponseWriter, r *http.Request) {
 
 	// handleExampleと同じようにtemplateにテンプレートを埋めて、出力する。
 	w.Header().Set("Content-Type", "text/html; charset=utf-8")
-	tmpl.ExecuteTemplate(w, "norikae.html", network)
+	err = tmpl.ExecuteTemplate(w, "norikae.html", network)
+	if err != nil {
+		// もしテンプレートに問題があったらこのエラーが出ます。
+		log.Errorf(ctx, "rendering template norikae.html failed: %v", err)
+	}
 }
