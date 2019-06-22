@@ -15,6 +15,18 @@ networkJson = urlfetch.fetch("https://tokyo.fantasy-transit.appspot.com/net?form
 network = json.loads(networkJson.decode('utf-8'))  # JSONとしてパースする（stringからdictのlistに変換する）
 
 # このRequestHandlerでパタトカシーーのリクエストを処理して、結果を返す。
+class Root(webapp2.RequestHandler):
+  def get(self):
+    self.response.headers['Content-Type'] = 'text/html; charset=UTF-8'
+    self.response.write('''
+<h1>Hello!</h1>
+  <ul>
+    <li><a href=/pata>パタトクカシーー</a></li>
+    <li><a href=/norikae>乗換案内</a></li>
+  </ul>
+''')
+
+# このRequestHandlerでパタトカシーーのリクエストを処理して、結果を返す。
 class Pata(webapp2.RequestHandler):
     def get(self):
         # とりあえずAとBをつなぐだけで返事を作っていますけど、パタタコカシーーになるように自分で直してください！
@@ -29,6 +41,7 @@ class Norikae(webapp2.RequestHandler):
         self.response.write(networkTmpl.render(network=network))
 
 app = webapp2.WSGIApplication([
-    ('/', Pata),
+    ('/', Root),
+    ('/pata', Pata),
     ('/norikae', Norikae),
 ], debug=True)
