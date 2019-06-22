@@ -45,9 +45,24 @@ func handlePata(w http.ResponseWriter, r *http.Request) {
 		B: r.FormValue("b"),
 	}
 
+	// Goだとstringの[x]で「x番目の値」を取ると、「x番目の文字」ではな
+	// くて、「x番目のbyte」を取るので、日本語の文字場合に１文字が複数
+	// のbyteで表しているので、「x番目のbyte」は特に意味がありません。
+	// 「x番目の文字」を取るためにまずstringから[]rune （runeのスライ
+	// ス）に変換した方がいいです。ちなみに「rune」は英語では「文字」
+	// みたいな意味です。
+	//
+	// （参考のために：もう一つの文字１個ずつ取る方法として、
+	// strings.split(content.A, "") でstringから[]stringに変換すること
+	// が出来ます。）
+	aMoji := []rune(content.A)
+	bMoji := []rune(content.B)
 	// とりあえずPataを簡単な操作で設定しますけど、すこし工夫をすれば
 	// パタトクカシーーができます。
-	content.Pata = content.A + content.B
+	pata := append(aMoji, bMoji...)
+	// []runeからstringに戻して、テンプレートで使うcontent.Pataの変数
+	// に入れておきます。
+	content.Pata = string(pata)
 
 	// example.htmlというtemplateをcontentの内容を使って、{{.A}}などのとこ
 	// ろを実行して、内容を埋めて、wに書き込む。
