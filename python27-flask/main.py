@@ -22,8 +22,20 @@ def root():
 # これをパタトクカシーーを処理するようにしています。
 def pata():
   # とりあえずAとBをつなぐだけで返事を作っていますけど、パタタコカシーーになるように自分で直してください！
-  pata = request.args.get('a', '') + request.args.get('b', '')
+  #pata = request.args.get('a', '') + request.args.get('b', '')
   # pata.htmlのテンプレートの内容を埋め込んで、返事を返す。
+
+  str1 = request.args.get('a', '')
+  str2 = request.args.get('b', '')
+
+  if len(str1) != len(str2):
+  	pata = '同じ長さの文字列を入力してください'
+
+  pata = ''
+  for i in range(len(str1)):
+  	pata += str1[i]
+  	pata += str2[i]
+
   return render_template('pata.html', pata=pata)
 
 @app.route('/norikae')

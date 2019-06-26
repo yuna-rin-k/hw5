@@ -59,7 +59,13 @@ func handlePata(w http.ResponseWriter, r *http.Request) {
 	bMoji := []rune(content.B)
 	// とりあえずPataを簡単な操作で設定しますけど、すこし工夫をすれば
 	// パタトクカシーーができます。
-	pata := append(aMoji, bMoji...)
+	str := ""
+	for i:=0; i<len(aMoji); i++ {
+		str := str + aMoji[i]
+		str := str + bMoji[i];
+	}
+	pata := append(aMoji)
+	//pata := append(aMoji, bMoji...)
 	// []runeからstringに戻して、テンプレートで使うcontent.Pataの変数
 	// に入れておきます。
 	content.Pata = string(pata)
